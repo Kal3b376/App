@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "82236202371",
+    "project_id": "goodhealth-97505",
+    "storage_bucket": "goodhealth-97505.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:82236202371:android:1f6ca75d32af7e2a872ab6",
+        "android_client_info": {
+          "package_name": "com.example.goodhealth"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7nQ6xPnaQN7m2cCgq2KLWofMlKMyiUuk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
