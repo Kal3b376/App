@@ -1,7 +1,9 @@
 package com.example.goodhealth.ui.theme.screens.login
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -9,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
@@ -16,7 +19,10 @@ import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -32,8 +38,10 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -45,116 +53,173 @@ import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.animateLottieCompositionAsState
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.example.goodhealth.R
+import com.example.goodhealth.data.AuthViewModel
 import com.example.goodhealth.navigation.ROUT_DASHBOARD
 import com.example.goodhealth.navigation.ROUT_SIGNUP
 import com.example.goodhealth.navigation.ROUT_SPLASH
 import com.example.goodhealth.ui.theme.newBlue
+import com.example.goodhealth.ui.theme.newGreen
 import com.example.goodhealth.ui.theme.screens.products.AddProductsScreen
 
 @Composable
-fun LoginScreen(navController: NavController){
 
-    Column(
+fun LoginScreen(navController: NavController){
+    Column (
         modifier = Modifier
             .fillMaxSize()
-            .paint(
-                painterResource(id = com.google.android.gms.base.R.drawable.common_full_open_on_phone),
-                contentScale = ContentScale.FillBounds
-            ),
+            .background(newGreen),
 
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center){
 
-        Spacer(modifier = Modifier.height(20.dp))
+        Spacer(modifier = Modifier.height(60.dp))
 
         Image(
-            painter = painterResource(id = R.drawable.ic_launcher_foreground) ,
-            contentDescription = "home",
+            painter = painterResource(id = R.drawable.ic_launcher_foreground),
+            contentDescription ="home",
             modifier = Modifier
-                .size(200.dp),
+                .size(90.dp),
             contentScale = ContentScale.Crop
         )
-        Spacer(modifier = Modifier.height(10.dp))
+        Spacer(modifier = Modifier.height(60.dp))
 
-        Text(
-            text = "Welcome Back!",
-            fontSize = 45.sp,
-            fontFamily = FontFamily.Cursive,
-            color = Color.Black
-        )
-        Spacer(modifier = Modifier.height(10.dp))
+        Card (modifier = Modifier
+            .fillMaxWidth()
+            .height(700.dp)
+            .width(500.dp)
+            .padding(40.dp),
+            colors = CardDefaults.cardColors(Color.White)){
 
+            Text(
+                text = "Welcome Back",
+                fontSize = 40.sp,
+                fontFamily = FontFamily.Cursive,
+                color = Color.Black,
+                textAlign = TextAlign.Center,
+                modifier = Modifier.padding(start =40.dp)
+            )
 
-
-        Text(
-            text = "Already have an account.Please enter your credentials",
-            fontSize = 18.sp,
-            fontFamily = FontFamily.SansSerif,
-            color = Color.Black,
-            modifier = Modifier.fillMaxWidth(),
-            textAlign = TextAlign.Center
-        )
-        Spacer(modifier = Modifier.height(10.dp))
-        var email by remember { mutableStateOf("") }
-        var password by remember { mutableStateOf("") }
-
-        Spacer(modifier = Modifier.height(10.dp))
-
-        OutlinedTextField(
-            value = email ,
-            onValueChange = { email = it},
-            label = { Text(text = "Email Address")},
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(20.dp, end = 20.dp),
-            leadingIcon = { Icon(imageVector = Icons.Default.Email, contentDescription = "",tint = newBlue) },
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
-
+            Spacer(modifier = Modifier.height(10.dp))
+            Text(
+                text = "You already have an account please enter your credentials",
+                fontSize = 10.sp,
+                fontFamily = FontFamily.SansSerif,
+                color = Color.Black,
+                modifier = Modifier.fillMaxWidth(),
+                textAlign = TextAlign.Center
 
             )
-        Spacer(modifier = Modifier.height(10.dp))
+            var email by remember { mutableStateOf("") }
+            var password by remember { mutableStateOf("") }
 
-        OutlinedTextField(
-            value = password ,
-            onValueChange = { password = it},
-            label = { Text(text = "Password")},
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(20.dp, end = 20.dp),
-            leadingIcon = { Icon(imageVector = Icons.Default.Lock, contentDescription = "",tint = newBlue) },
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
-            visualTransformation = PasswordVisualTransformation()
-        )
-        Spacer(modifier = Modifier.height(15.dp))
-
-        Button(
-            onClick = { navController.navigate(ROUT_DASHBOARD) },
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(60.dp)
-                .padding(start = 20.dp, end = 20.dp),
-            colors = ButtonDefaults.buttonColors(Color.Black),
-            shape = RoundedCornerShape(10.dp)
-        ) {
-            Text(text = "Login",
-                fontSize = 20.sp)
-        }
-
-        val context = LocalContext.current
-         {
-        }
             Spacer(modifier = Modifier.height(10.dp))
 
 
+            OutlinedTextField(
+                value = email,
+                onValueChange ={ email = it},
+                label = { Text(text = "Email Address :", fontWeight = FontWeight.Bold, color = Color.Black, fontFamily = FontFamily.SansSerif) },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(start = 20.dp, end = 20.dp),
+                leadingIcon = { Icon(imageVector = Icons.Default.Email, contentDescription = "person", tint = Color.Black) },
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
+                shape = RoundedCornerShape(20.dp)
+            )
+            Spacer(modifier = Modifier.height(30.dp))
 
+            var passwordVisible by remember { mutableStateOf(false) }
+            // Function to determine visual transformation based on visibility
+            val visualTransformation: VisualTransformation =
+                if (passwordVisible) VisualTransformation.None
+                else PasswordVisualTransformation()
+            // Function to switch the password visibility
+            fun togglePasswordVisibility() {
+                passwordVisible = !passwordVisible
+            }
+
+            OutlinedTextField(
+                value = password,
+                onValueChange = {password = it},
+                label = { Text(text = "Password:", fontFamily = FontFamily.SansSerif, fontWeight = FontWeight.Bold)},
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+                leadingIcon = { Icon(imageVector = Icons.Default.Lock, contentDescription = "") },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(start = 20.dp, end = 20.dp),
+                shape = RoundedCornerShape(5.dp),
+                visualTransformation = visualTransformation,
+                trailingIcon = {
+                    val icon = if (passwordVisible) {
+                        //Download a password show icon
+                        painterResource(id = R.drawable.ic_launcher_foreground)
+                    } else {
+                        //Download a password hide icon
+                        painterResource(id = R.drawable.ic_launcher_foreground)
+                    }
+                    IconButton(onClick = { togglePasswordVisibility() }) {
+                        Icon(painter = icon, contentDescription = null)
+                    }
+                }
+
+            )
+            val context = LocalContext.current
+            val authViewModel = AuthViewModel(navController, context)
+            Spacer(modifier = Modifier.height(20.dp))
+
+            Button(
+                onClick = {
+                    authViewModel.login(email, password)
+                },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(50.dp)
+                    .padding(start = 20.dp, end = 20.dp),
+                colors = ButtonDefaults.buttonColors(Color.Black),
+                shape = RoundedCornerShape(10.dp)
+            ) {
+                Text(text = "Login as buyer")
+
+            }
+            Spacer(modifier = Modifier.height(30.dp))
+            Text(
+                text = "Do not have an account ? Register",
+                fontSize = 18.sp,
+                fontFamily = FontFamily.SansSerif,
+                color = Color.Black,
+                modifier = Modifier.fillMaxWidth().clickable {navController.navigate(ROUT_SIGNUP) },
+                textAlign = TextAlign.Center
+
+            )
+            Spacer(modifier = Modifier.height(20.dp))
+
+            Button(
+                onClick = { authViewModel.adminlogin(email, password) },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(50.dp)
+                    .padding(start = 20.dp, end = 20.dp),
+                colors = ButtonDefaults.buttonColors(Color.Black),
+                shape = RoundedCornerShape(10.dp)
+            ) {
+                Text(text = "Login as an admin")
+
+            }
+
+
+        }
 
     }
 
-
 }
+
+
+
+
 @Composable
 @Preview(showBackground = true)
 fun LoginScreenPreview(){
     LoginScreen(rememberNavController())
+
 
 }

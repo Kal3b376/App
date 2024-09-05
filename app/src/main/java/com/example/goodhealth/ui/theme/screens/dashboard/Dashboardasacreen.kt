@@ -12,7 +12,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardColors
 import androidx.compose.material3.CardDefaults
@@ -46,7 +48,9 @@ import com.example.goodhealth.ui.theme.newGreen
 fun DashboardScreen(navController: NavController) {
 
     Column(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier
+            .fillMaxSize()
+            .verticalScroll(rememberScrollState()).padding(top = 20.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
@@ -58,8 +62,19 @@ fun DashboardScreen(navController: NavController) {
             color = Color.Black
         )
 
-
         Spacer(modifier = Modifier.height(10.dp))
+
+
+        Image(
+            painter = painterResource(id = R.drawable.img_2) ,
+            contentDescription = "home",
+            modifier = Modifier
+                .size(150.dp),
+            contentScale = ContentScale.Crop
+
+        )
+        Spacer(modifier = Modifier.height(20.dp))
+
 
         Text(
             text = "Your Better Choice for Better Health",
@@ -75,7 +90,7 @@ fun DashboardScreen(navController: NavController) {
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(700.dp),
-                shape = RoundedCornerShape(topStart = 60.dp, topEnd = 60.dp),
+                shape = RoundedCornerShape(topStart = 50.dp, topEnd = 50.dp),
                 colors = CardDefaults.cardColors(newGreen)
 
             ) {
@@ -206,7 +221,7 @@ fun DashboardScreen(navController: NavController) {
                             Spacer(modifier = Modifier.height(10.dp))
 
                             Text(
-                                text = "User Profile",
+                                text = "About Us",
                                 fontSize = 18.sp,
                                 modifier = Modifier.fillMaxWidth(),
                                 textAlign = TextAlign.Center
@@ -268,47 +283,7 @@ fun DashboardScreen(navController: NavController) {
                 //End of row1
 
 
-                //Row1
-                Row(modifier = Modifier.padding(20.dp)) {
-                    //Card
-                    Card(
-                        modifier = Modifier
-                            .width(400.dp)
-                            .height(200.dp)
-                            .clickable {
-                                navController.navigate(ROUT_PRODUCTS)
-                            },
-                        elevation = CardDefaults.cardElevation(10.dp)
 
-                    ) {
-                        Column {
-                            Spacer(modifier = Modifier.height(10.dp))
-
-                            Box(
-                                modifier = Modifier.fillMaxWidth(),
-                                contentAlignment = Alignment.Center
-                            ) {
-                                Image(
-                                    painter = painterResource(id = R.drawable.img_6),
-                                    contentDescription = "Home",
-                                    modifier = Modifier.size(100.dp)
-                                )
-
-
-                            }
-                            Spacer(modifier = Modifier.height(10.dp))
-
-                            Text(
-                                text = "Customer Insights",
-                                fontSize = 18.sp,
-                                modifier = Modifier.fillMaxWidth(),
-                                textAlign = TextAlign.Center
-
-                            )
-
-                        }
-
-                    }
                     //End of Card2
 
 
@@ -324,7 +299,7 @@ fun DashboardScreen(navController: NavController) {
 
 
     }
-}
+
 
 @Composable
 @Preview(showBackground = true)

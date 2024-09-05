@@ -142,7 +142,7 @@ fun SignupScreen(navController: NavController){
             colors = ButtonDefaults.buttonColors(Color.Black),
             shape = RoundedCornerShape(10.dp)
         ) {
-            Text(text = "Create")
+            Text(text = "Create Account")
         }
 
         Spacer(modifier = Modifier.height(20.dp))
@@ -156,7 +156,7 @@ fun SignupScreen(navController: NavController){
             colors = ButtonDefaults.buttonColors(Color.Black),
             shape = RoundedCornerShape(10.dp)
         ) {
-            Text(text ="View product",
+            Text(text ="Login",
                 fontSize = 20.sp)
         }
 
