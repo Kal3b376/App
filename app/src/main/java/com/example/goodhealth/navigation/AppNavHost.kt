@@ -8,6 +8,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.goodhealth.ui.theme.screens.about.AboutScreen
 import com.example.goodhealth.ui.theme.screens.home.HomeScreen
+import com.example.goodhealth.ui.theme.screens.location.LocationScreen
 import com.example.goodhealth.ui.theme.screens.login.LoginScreen
 import com.example.goodhealth.ui.theme.screens.products.AddProductsScreen
 import com.example.goodhealth.ui.theme.screens.splash.SplashScreen
@@ -54,6 +55,10 @@ fun AppNavHost(
         }
         composable(VIEW_PRODUCTS_URL) {
             ViewProductsScreen(navController = navController)
+        }
+
+        composable(ROUT_LOCATION) {
+            LocationScreen(navController = navController)
         }
 
 

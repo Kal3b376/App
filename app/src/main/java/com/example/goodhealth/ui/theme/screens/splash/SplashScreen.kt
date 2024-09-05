@@ -53,7 +53,7 @@ fun SplashScreen(navController: NavController){
         var coroutineScope = rememberCoroutineScope()
         coroutineScope.launch {
             delay(2000)
-            navController.navigate(ROUT_SIGNUP)
+            navController.navigate(ROUT_LOGIN)
         }
         Image(
             painter = painterResource(id = R.drawable.img) ,

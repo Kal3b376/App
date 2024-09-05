@@ -41,6 +41,7 @@ import com.example.goodhealth.R
 import com.example.goodhealth.navigation.ROUT_ABOUT
 import com.example.goodhealth.navigation.ROUT_DASHBOARD
 import com.example.goodhealth.navigation.ROUT_DETAIL
+import com.example.goodhealth.navigation.ROUT_SIGNUP
 import com.example.goodhealth.ui.theme.newCyan
 import com.example.goodhealth.ui.theme.newGreen
 

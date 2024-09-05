@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.provider.MediaStore
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -22,11 +23,13 @@ import androidx.compose.material.icons.filled.Face
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Info
+import androidx.compose.material.icons.filled.Place
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.outlined.Edit
 import androidx.compose.material.icons.outlined.Face
 import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material.icons.outlined.Info
+import androidx.compose.material.icons.outlined.Place
 import androidx.compose.material3.Badge
 import androidx.compose.material3.BadgedBox
 import androidx.compose.material3.Button
@@ -62,6 +65,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.goodhealth.R
 import com.example.goodhealth.ui.theme.newBlue
+import com.example.goodhealth.ui.theme.newGreen
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
@@ -109,8 +113,9 @@ fun ContactsScreen(navController: NavController){
             },
             topBar = {
                 TopAppBar(
-                    title = { Text(text = "Property plus") },
-                    colors = TopAppBarDefaults.mediumTopAppBarColors(Color.Red)
+                    title = { Text(text = "Good Health",
+                            color = Color.Green) },
+                    colors = TopAppBarDefaults.mediumTopAppBarColors(Color.Black)
                 )
             },
 
@@ -136,15 +141,17 @@ fun ContactsScreen(navController: NavController){
                             modifier = Modifier
                                 .height(180.dp)
                                 .width(200.dp)
+                                .padding(top = 20.dp)
                         ) {
 
                             Box (modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center){
 
                                 Image(
-                                    painter = painterResource(id = R.drawable.img_4),
+                                    painter = painterResource(id = R.drawable.ic_launcher_foreground),
                                     contentDescription ="home",
                                     modifier = Modifier
                                         .fillMaxSize()
+                                        .background(color = Color.Black)
                                         .padding(top = 10.dp)
                                         .padding(start = 10.dp),
                                     contentScale = ContentScale.Crop
@@ -160,37 +167,26 @@ fun ContactsScreen(navController: NavController){
                         }
                         Column (modifier = Modifier.padding(20.dp)){
                             Text(
-                                text = "Visit Lavington",
+                                text = "Good Health",
                                 fontSize = 25.sp
 
                             )
                             Row {
-                                Icon(imageVector = Icons.Default.Star, contentDescription = "star", tint = Color.Cyan, modifier = Modifier.size(30.dp))
-                                Icon(imageVector = Icons.Default.Star, contentDescription = "star", tint = Color.Cyan, modifier = Modifier.size(30.dp))
-                                Icon(imageVector = Icons.Default.Star, contentDescription = "star", tint = Color.Cyan, modifier = Modifier.size(30.dp))
-                                Icon(imageVector = Icons.Default.Star, contentDescription = "star", tint = Color.Cyan, modifier = Modifier.size(30.dp))
-                                Icon(imageVector = Icons.Default.Star, contentDescription = "star", tint = Color.Cyan, modifier = Modifier.size(30.dp))
+                                Icon(imageVector = Icons.Default.Star, contentDescription = "star", tint = Color.Green, modifier = Modifier.size(30.dp))
+                                Icon(imageVector = Icons.Default.Star, contentDescription = "star", tint = Color.Green, modifier = Modifier.size(30.dp))
+                                Icon(imageVector = Icons.Default.Star, contentDescription = "star", tint = Color.Green, modifier = Modifier.size(30.dp))
+                                Icon(imageVector = Icons.Default.Star, contentDescription = "star", tint = Color.Green, modifier = Modifier.size(30.dp))
+                                Icon(imageVector = Icons.Default.Star, contentDescription = "star", tint = Color.Green, modifier = Modifier.size(30.dp))
                             }
-                            Text(text = "THe best property you can find")
+                            Text(text = "Better Health ")
                             Text(text = "14,400 Reviews")
                             val mContext = LocalContext.current
-                            Button(
-                                onClick = {val callIntent= Intent(Intent.ACTION_DIAL)
-                                    callIntent.data="tel:0720245837".toUri()
-                                    mContext.startActivity(callIntent)
-                                },
-                                colors = ButtonDefaults.buttonColors(newBlue),
-                                shape = RoundedCornerShape(10.dp)
-                            ) {
-                                Text(text = "Call")
-
-                            }
                         }
 
 
                     }
                     // End of row
-                    Spacer(modifier = Modifier.height(5.dp))
+                    Spacer(modifier = Modifier.height(50.dp))
                     val mContext = LocalContext.current
 
                     //STK
@@ -202,7 +198,7 @@ fun ContactsScreen(navController: NavController){
                             .fillMaxWidth()
                             .height(50.dp)
                             .padding(start = 20.dp, end = 20.dp),
-                        colors = ButtonDefaults.buttonColors(newBlue),
+                        colors = ButtonDefaults.buttonColors(newGreen),
                         shape = RoundedCornerShape(10.dp)
                     ) {
 
@@ -213,13 +209,13 @@ fun ContactsScreen(navController: NavController){
                     //CALL
                     Button(
                         onClick = { val callIntent= Intent(Intent.ACTION_DIAL)
-                            callIntent.data="tel:0720245837".toUri()
+                            callIntent.data="tel:0741280709".toUri()
                             mContext.startActivity(callIntent)},
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(50.dp)
                             .padding(start = 20.dp, end = 20.dp),
-                        colors = ButtonDefaults.buttonColors(newBlue),
+                        colors = ButtonDefaults.buttonColors(newGreen),
                         shape = RoundedCornerShape(10.dp)
                     ) {
 
@@ -230,14 +226,14 @@ fun ContactsScreen(navController: NavController){
                     //SMS
                     Button(
                         onClick = {  val smsIntent= Intent(Intent.ACTION_SENDTO)
-                            smsIntent.data="smsto:0720245837".toUri()
+                            smsIntent.data="smsto:0741280709".toUri()
                             smsIntent.putExtra("sms_body","Hello ,how was your day?")
                             mContext.startActivity(smsIntent) },
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(50.dp)
                             .padding(start = 20.dp, end = 20.dp),
-                        colors = ButtonDefaults.buttonColors(newBlue),
+                        colors = ButtonDefaults.buttonColors(newGreen),
                         shape = RoundedCornerShape(10.dp)
                     ) {
 
@@ -257,7 +253,7 @@ fun ContactsScreen(navController: NavController){
                             .fillMaxWidth()
                             .height(50.dp)
                             .padding(start = 20.dp, end = 10.dp),
-                        colors = ButtonDefaults.buttonColors(newBlue),
+                        colors = ButtonDefaults.buttonColors(newGreen),
                         shape = RoundedCornerShape(10.dp)
                     ) {
 
@@ -275,7 +271,7 @@ fun ContactsScreen(navController: NavController){
                             .fillMaxWidth()
                             .height(50.dp)
                             .padding(start = 20.dp, end = 20.dp),
-                        colors = ButtonDefaults.buttonColors(newBlue),
+                        colors = ButtonDefaults.buttonColors(newGreen),
                         shape = RoundedCornerShape(10.dp)
                     ) {
 
@@ -283,25 +279,7 @@ fun ContactsScreen(navController: NavController){
 
                     }
                     Spacer(modifier = Modifier.height(10.dp))
-                    //CAMERA
-                    Button(
-                        onClick = { val cameraIntent= Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-                            if (cameraIntent.resolveActivity(mContext.packageManager)!=null){
-                                mContext.startActivity(cameraIntent)
-                            }else{
-                                println("Camera app is not available")
-                            } },
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(50.dp)
-                            .padding(start = 20.dp, end = 20.dp),
-                        colors = ButtonDefaults.buttonColors(newBlue),
-                        shape = RoundedCornerShape(10.dp)
-                    ) {
 
-                        Text(text = "Camera")
-
-                    }
 
 
                 }
@@ -328,8 +306,8 @@ val bottomNavItems = listOf(
 
 
     BottomNavItem(
-        title = "Details",
-        route="details",
+        title = "Products",
+        route="products",
         selectedIcon=Icons.Filled.Info,
         unselectedIcon=Icons.Outlined.Info,
         hasNews = true,
@@ -337,18 +315,10 @@ val bottomNavItems = listOf(
     ),
 
     BottomNavItem(
-        title = "About",
-        route="about",
-        selectedIcon=Icons.Filled.Edit,
-        unselectedIcon=Icons.Outlined.Edit,
-        hasNews = true,
-        badges=1
-    ),
-    BottomNavItem(
-        title = "About",
-        route="about",
-        selectedIcon=Icons.Filled.Face,
-        unselectedIcon=Icons.Outlined.Face,
+        title = "Location",
+        route="location",
+        selectedIcon=Icons.Filled.Place,
+        unselectedIcon=Icons.Outlined.Place,
         hasNews = true,
         badges=1
     ),
